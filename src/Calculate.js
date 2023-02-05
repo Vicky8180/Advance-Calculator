@@ -8,7 +8,7 @@ const Calculate = () => {
   const [taking, setTaking] = useState("");
   const [previou, setPriviou] = useState("");
   const [first, setFirst] = useState();
-  const [second, setSecond] = useState();
+  const [second, setSecond] = useState(); 
 
 
 
@@ -67,18 +67,27 @@ const Calculate = () => {
     setTaking("");
     setSecond("!");
   }
-
+ 
   function erase() {
+let temp2;
+    if(previou==""){
+       temp2 = first.substring(0, first.length - 1);
+       setFirst(temp2);
+       setPriviou(temp2);
+    }else {
+       temp2 = previou.substring(0, previou.length - 1);
+      //  setSecond(temp2);
+       setPriviou(temp2);
+    }
 
-    let temp2 = previou.substring(0, previou.length - 1);
-    setFirst(temp2);
-    setPriviou(first);
-    setTaking("");
-    setSecond("@");
+    // setFirst(temp2);
+    // setPriviou(temp2);
+    // setTaking("");
+    // setSecond("@");
   }
   function equal() {
-    let a = parseInt(previou);
-    let b = parseInt(first);
+    let a = parseFloat(previou);
+    let b = parseFloat(first);
     if (second == "*") {
       res = a * b;
     } if (second == "+") {
@@ -99,106 +108,107 @@ const Calculate = () => {
       setTaking("");
       res = 0;
     }
-
+    res = Math.round(res * 100) / 100
     setPriviou(res);
     setSecond("")
     console.log(res);
   }
   return <>
+    <div className="starter">
+      <div className="main1">
+        <div className="display">
+          <div className="displayinput">
+            <input className="box" value={previou}></input>
+          </div>
 
-    <div className="main1">
-      <div className="display">
-        <div className="displayinput">
-          <input className="box" value={previou}></input>
         </div>
 
-      </div>
+        <div className="inputfiled">
 
-      <div className="inputfiled">
-
-        <div className="buttons">
-          <div className="containerer">
-            {/* <div className="row row-cols-3 row-cols-lg-4"> */}
-            <div className="first">
-              <div className="coll1">
-                <button className="jh" onClick={cancel}>
-                  CRr
-                </button>
+          <div className="buttons">
+            <div className="containerer">
+              {/* <div className="row row-cols-3 row-cols-lg-4"> */}
+              <div className="first">
+                <div className="coll1">
+                  <button className="jh" onClick={cancel}>
+                    CRr
+                  </button>
+                </div>
+                <div className="coll">
+                  <button className="jh" onClick={() => { numbers(7) }}>
+                    7
+                  </button>
+                </div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(4) }}>
+                  4
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(1) }}>
+                  1
+                </button></div>
+                <div className="coll">
+                  <button className="jh" onClick={() => { numbers("00") }}>
+                    00
+                  </button>
+                </div>
               </div>
-              <div className="coll">
-                <button className="jh" onClick={() => { numbers(7) }}>
-                  7
-                </button>
-              </div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(4) }}>
-                4
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(1) }}>
-                1
-              </button></div>
-              <div className="coll">
-                <button className="jh" onClick={() => { numbers(0) }}>
+              <div className="first">
+                <div className="coll">  <button className="jh" onClick={erase}>
+              cr
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(8) }}>
+                  8
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(5) }}>
+                  5
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(2) }}>
+                  2
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(0) }}>
                   0
-                </button>
+                </button></div>
               </div>
-            </div>
-            <div className="first">
-              <div className="coll">  <button className="jh" onClick={erase}>
-                CR
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(8) }}>
-                8
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(5) }}>
-                5
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(2) }}>
-                2
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(0) }}>
-                0
-              </button></div>
-            </div>
-            <div className="first">
-              <div className="coll">  <button className="jh" onClick={percent}>
-                %
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(9) }}>
-                9
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(6) }}>
-                6
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(3) }}>
-                3
-              </button></div>
-              <div className="coll">  <button className="jh" onClick={() => { numbers(0) }}>
-                .
-              </button></div>
-            </div>
-            <div className="first">
-              <div className="colll">  <button className="jh" onClick={minus}>
-                -
-              </button></div>
-              <div className="colll">  <button className="jh" onClick={plus}>
-                +
-              </button></div>
-              <div className="colll">  <button className="jh" onClick={multiply}>
-                *
-              </button></div>
-              <div className="colll">  <button className="jh" onClick={div}>
-                /
-              </button></div>
-              <div className="collll">  <button className="jh" onClick={equal}>
-                =
-              </button></div>
+              <div className="first">
+                <div className="coll">  <button className="jh" onClick={percent}>
+                  %
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(9) }}>
+                  9
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(6) }}>
+                  6
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(3) }}>
+                  3
+                </button></div>
+                <div className="coll">  <button className="jh" onClick={() => { numbers(".") }}>
+                  .
+                </button></div>
+              </div>
+              <div className="first">
+                <div className="colll">  <button className="jh" onClick={minus}>
+                  -
+                </button></div>
+                <div className="colll">  <button className="jh" onClick={plus}>
+                  +
+                </button></div>
+                <div className="colll">  <button className="jh" onClick={multiply}>
+                  X
+                </button></div>
+                <div className="colll">  <button className="jh" onClick={div}>
+                  /
+                </button></div>
+                <div className="collll">  <button className="jh" onClick={equal}>
+                  =
+                </button></div>
 
 
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </>
 }

@@ -4,10 +4,17 @@
     background: #000;
     border-radius: 10px 10px 0px 0px;
 }
+/* .starter{
+    background-color: aqua;
+    height: 850px;
+} */
 .main1{
+    /* display: flex;
+    margin-top: 300px; */
+    
     width: 330px;
     height: 500px;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(226, 226, 226);
     align-items: center;
     margin-left: 40%;
     margin-top: 8%;
